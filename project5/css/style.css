@@ -1,0 +1,29 @@
+body {
+	background-color: #CCC;
+}
+
+#container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#list-view {
+	width: 20%;
+}
+ul {
+	list-style-type: none;
+}
+
+}
+#map-view {
+	width: 80%;
+}
+
+#map-id {
+	padding: 3%;
+	margin: 2%;
+    width:90%;
+    height:90%;
+    position: absolute;
+    overflow: inherit;
+}
