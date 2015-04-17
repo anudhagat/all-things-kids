@@ -3,28 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Neighborhood Map</title>
+    <title>All Things Kids!</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" >
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
 </head>
 <body>
+    <h1>All Things Kids!</h1>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <label>Search:</label>
+                    <input type="text" id="search" value="" data-bind="value: searchStr, valueUpdate: 'afterkeydown',event: {keyup: updatePlaces}"></li>
 
-    <form id="form-container">
-        <label>Search: </label><input type="text" id="search" value="" data-bind="value: searchStr">
-        <button id="submit-btn" data-bind="click: updatePlaces">Go!</button>
-    </form>
-    <div id="container">
-    <ul id="list-view" data-bind="foreach: placesList">
-        <li data-bind="text: name, click: triggerMarkerClick"></li>
-    </ul>
+                        <label>Type:</label>
+                    <select size=1 data-bind="options: availableTypes,
+                    optionsText: 'name',
+                    optionsValue: 'id',
+                    value: chosenType,
+                    click: updatePlaces">
+                    </select>
 
-    <div id="map-view">
-        <div id="map-id" data-bind="map: placesList"></div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div id="container" class="row">
+            <ul id="list-view" class="list-group" data-bind="foreach: placesList" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <div data-bind="if: isVisible">
+                    <li class="list-group-item" data-bind="text: name, click: triggerMarkerClick"></li>
+                </div>
+            </ul>
+            <div id="map-view" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div id="map-id" data-bind="map: placesList">
+                </div>
+            </div>
+        </div>
+
+    <div id="yelpWindow" title="Yelp Reviews"></div>
     </div>
-</div>
 
     <script src="js/libs/knockout-3.2.0.js"></script>
-    <script src="js/libs/jQuery.min.js"></script>
+
+    <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+    <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
